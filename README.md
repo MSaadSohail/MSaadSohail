@@ -80,9 +80,8 @@ I design and build the backends behind real-time multiplayer games and Web3 prod
 ## Get in touch
 
 <p align="center">
-  <!-- Replace the links below with your own -->
-  <a href="https://www.linkedin.com/in/your-handle"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge" alt="LinkedIn" /></a>
-  <a href="mailto:you@example.com"><img src="https://img.shields.io/badge/Email-0ea5e9?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+  <a href="https://www.linkedin.com/in/msaadsohail"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge" alt="LinkedIn" /></a>
+  <a href="mailto:saad@algoryte.com"><img src="https://img.shields.io/badge/Email-0ea5e9?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
   <a href="https://github.com/Algoryte"><img src="https://img.shields.io/badge/Algoryte-0f172a?style=for-the-badge&logo=github&logoColor=white" alt="Algoryte" /></a>
 </p>
 
