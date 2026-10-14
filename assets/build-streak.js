@@ -1,25 +1,10 @@
 // Builds assets/streak.svg: total contributions, most contributions in a day and longest streak,
-// from the GitHub contribution calendar. Run `node assets/build-streak.js`; it uses
-// GITHUB_TOKEN when set (the daily workflow), otherwise `gh auth token`.
+// from the GitHub contribution calendar. Run `node assets/build-streak.js`.
 // Days are UTC calendar days, as the GitHub API returns them.
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
 const { baseCss, defs, countUp, cardFrame, COUNT_MS } = require("./card-theme");
-
-const LOGIN = process.env.GH_LOGIN || "MSaadSohail";
-const TOKEN = process.env.GITHUB_TOKEN || execSync("gh auth token").toString().trim();
-
-async function graphql(query, variables) {
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: { Authorization: `bearer ${TOKEN}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ query, variables }),
-  });
-  const body = await res.json();
-  if (!res.ok || body.errors) throw new Error(`GitHub API: ${JSON.stringify(body.errors || body)}`);
-  return body.data;
-}
+const { LOGIN, graphql } = require("./github-api");
 
 async function fetchDays() {
   const { user } = await graphql(`query($login:String!){ user(login:$login){ createdAt } }`, { login: LOGIN });

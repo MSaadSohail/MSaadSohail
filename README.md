@@ -26,6 +26,14 @@ I design and build the backends behind real-time multiplayer games and Web3 prod
 
 ---
 
+## Activity
+
+<p align="center">
+  <img src="assets/activity.svg" width="100%" alt="Contribution heatmap for the last year" />
+</p>
+
+---
+
 ## By the numbers
 
 <p align="center">

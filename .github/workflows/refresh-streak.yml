@@ -1,4 +1,4 @@
-name: Refresh streak card
+name: Refresh contribution cards
 
 on:
   schedule:
@@ -16,17 +16,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Build streak.svg
+      - name: Build streak.svg and activity.svg
         env:
           # Set a STREAK_TOKEN secret (classic PAT, read:user) if the built-in token cannot read the contribution calendar.
           GITHUB_TOKEN: ${{ secrets.STREAK_TOKEN || secrets.GITHUB_TOKEN }}
           GH_LOGIN: ${{ github.repository_owner }}
-        run: node assets/build-streak.js
+        run: |
+          node assets/build-streak.js
+          node assets/build-activity.js
       - name: Commit if changed
         run: |
-          if git diff --quiet -- assets/streak.svg; then exit 0; fi
+          if git diff --quiet -- assets/streak.svg assets/activity.svg; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/streak.svg
-          git commit -m "chore: refresh streak card"
+          git add assets/streak.svg assets/activity.svg
+          git commit -m "chore: refresh contribution cards"
           git push
