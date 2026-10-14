@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="442" viewBox="0 0 860 442" role="img" aria-label="Level 04, Crown of Khosrow (2024 - 2025): Historical real-time strategy for iOS and Android. Quest: Build an empire across a living world map, on a phone. Build: One scene bootstrap that starts the grid, game state, timer and fog of war in every level. Boss fight: Moving armies smoothly on mobile: grid pathfinding built on Unity ECS, map areas loaded on demand. Tech: Unity, C#, Android, iOS.">
+  <title>Level 04: Crown of Khosrow</title>
+  <style>
+  text { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; }
+  .num { font-size: 40px; font-weight: 800; fill: #f8fafc; letter-spacing: -0.5px; }
+  .label { font-size: 14px; font-weight: 600; fill: #94a3b8; letter-spacing: 0.4px; }
+  .card { opacity: 0; animation: rise .7s cubic-bezier(.2,.8,.2,1) forwards; }
+  .frame { opacity: 0; }
+  .bar { transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow 1.4s cubic-bezier(.2,.8,.2,1) forwards; }
+  .shine { animation: sweep 7s ease-in-out infinite; }
+  .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes show { 0%, 100% { opacity: 1; } }
+  @keyframes hold { 0%, 100% { opacity: 0; } }
+  @keyframes grow { to { transform: scaleX(1); } }
+  @keyframes sweep { 0%, 70% { transform: translateX(-160px); } 100% { transform: translateX(var(--sweep-to, 460px)); } }
+  @keyframes pulse { 0%, 100% { opacity: .35; transform: scale(1); } 50% { opacity: .8; transform: scale(1.12); } }
+  @media (prefers-reduced-motion: reduce) { .card, .bar, .shine, .pulse, .frame, .final { animation: none !important; opacity: 1; transform: none; } .frame { opacity: 0 !important; } }
+
+  .title { font-size: 24px; font-weight: 800; fill: #f8fafc; }
+  .tag { font-size: 13px; font-weight: 600; }
+  .body { font-size: 13.5px; fill: #cbd5e1; }
+  .rowlabel { font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px; }
+  .chip { font-size: 10.5px; font-weight: 600; fill: #94a3b8; text-anchor: middle; }
+  .levelchip { font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px; }
+  .years { font-size: 12px; font-weight: 600; fill: #94a3b8; text-anchor: end; }
+  .nodenum { font-size: 15px; font-weight: 800; fill: #f8fafc; text-anchor: middle; }
+  .ghost { font-size: 130px; font-weight: 900; text-anchor: middle; }
+  .ghostcap { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-anchor: middle; }
+  .slide { opacity: 0; animation: slideright .8s cubic-bezier(.2,.8,.2,1) 350ms forwards; }
+  .fade { opacity: 0; animation: rise .6s cubic-bezier(.2,.8,.2,1) forwards; }
+  .pop { opacity: 0; transform-box: fill-box; transform-origin: center; animation: pop .45s cubic-bezier(.3,1.6,.5,1) forwards; }
+  .node { transform-box: fill-box; transform-origin: center; transform: scale(0); animation: nodepop .6s cubic-bezier(.3,1.6,.5,1) 150ms forwards; }
+  .conn { transform-box: fill-box; transform-origin: left; transform: scaleX(0); animation: grow .5s ease-out 300ms forwards; }
+  .flow { animation: flow 1.2s linear infinite; }
+  .float { animation: float 6s ease-in-out infinite; }
+  .ghostwrap { opacity: 0; animation: ghostin 1.4s ease-out 600ms forwards; }
+  @keyframes slideleft { from { opacity: 0; transform: translateX(-36px); } to { opacity: 1; transform: none; } }
+  @keyframes slideright { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+  @keyframes nodepop { to { transform: scale(1); } }
+  @keyframes flow { to { stroke-dashoffset: -12; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes ghostin { to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .slide, .fade, .pop, .node, .conn, .flow, .float, .ghostwrap { animation: none !important; opacity: 1; transform: none; } }</style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111c33"/><stop offset="1" stop-color="#0a0f1e"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity=".9"/>
+      <stop offset=".5" stop-color="#1e293b" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity=".9"/>
+      <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="8s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".07"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="spineFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.9"/>
+      <stop offset=".5" stop-color="#fbbf24" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Path between levels -->
+  <line x1="430" y1="0" x2="430" y2="64" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+  <line class="flow" x1="430" y1="0" x2="430" y2="64" stroke="url(#spineFade)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 11"/>
+
+  <!-- Unlocked marker on the empty side -->
+  <g class="ghostwrap"><g class="float">
+    <text class="ghost" x="215" y="261" fill="none" stroke="#fbbf24" stroke-opacity=".22" stroke-width="2">04</text>
+    <text class="ghostcap" x="215" y="297" fill="#fbbf24" fill-opacity=".55">LEVEL UNLOCKED</text>
+  </g></g>
+
+  <!-- Connector and node -->
+  <line class="conn" x1="454" y1="64" x2="462" y2="64" stroke="#fbbf24" stroke-opacity=".6" stroke-width="2" stroke-dasharray="4 5"/>
+  <g class="node">
+    <circle class="pulse" cx="430" cy="64" r="27" fill="#fbbf24" opacity=".35"/>
+    <circle cx="430" cy="64" r="22" fill="#0b1222" stroke="#fbbf24" stroke-width="2.5"/>
+    <text class="nodenum" x="430" y="69">04</text>
+  </g>
+
+  <!-- Level card -->
+  <g class="slide">
+    <g transform="translate(462 18)">
+      <clipPath id="cliplv3"><rect width="380" height="406" rx="16"/></clipPath>
+      <rect width="380" height="406" rx="16" fill="url(#bg)"/>
+      <g clip-path="url(#cliplv3)">
+        <circle cx="360" cy="-10" r="70" fill="#fbbf24" opacity=".10"/>
+        <g class="shine" style="--sweep-to:570px; animation-delay:4200ms"><rect x="0" y="-20" width="70" height="446" fill="url(#shine)" transform="skewX(-20)"/></g>
+      </g>
+      <rect x=".75" y=".75" width="378.5" height="404.5" rx="15.5" fill="none" stroke="url(#ring)" stroke-width="1.5"/>
+      <g transform="translate(20 22)">
+        <rect width="74" height="20" rx="10" fill="#fbbf24" fill-opacity=".16"/>
+        <text class="levelchip" x="37" y="14" text-anchor="middle" fill="#fbbf24">LEVEL 04</text>
+      </g>
+      <text class="years" x="360" y="36">2024 - 2025</text>
+      <text class="title" x="20" y="72">Crown of Khosrow</text>
+      <text class="tag" x="20" y="92" fill="#fbbf24">Historical real-time strategy for iOS and Android</text>
+      <g class="fade" style="animation-delay:900ms">
+        <rect x="20" y="101" width="3" height="50" rx="1.5" fill="#fbbf24"/>
+        <text class="rowlabel" x="32" y="112" fill="#fbbf24">QUEST</text>
+        <text class="body" x="32" y="132">Build an empire across a living world map, on a</text>
+        <text class="body" x="32" y="151">phone.</text>
+      </g>
+      <g class="fade" style="animation-delay:1060ms">
+        <rect x="20" y="173" width="3" height="50" rx="1.5" fill="#38bdf8"/>
+        <text class="rowlabel" x="32" y="184" fill="#38bdf8">BUILD</text>
+        <text class="body" x="32" y="204">One scene bootstrap that starts the grid, game</text>
+        <text class="body" x="32" y="223">state, timer and fog of war in every level.</text>
+      </g>
+      <g class="fade" style="animation-delay:1220ms">
+        <rect x="20" y="245" width="3" height="50" rx="1.5" fill="#fb7185"/>
+        <text class="rowlabel" x="32" y="256" fill="#fb7185">BOSS FIGHT</text>
+        <text class="body" x="32" y="276">Moving armies smoothly on mobile: grid pathfinding</text>
+        <text class="body" x="32" y="295">built on Unity ECS, map areas loaded on demand.</text>
+      </g>
+        <g class="pop" style="animation-delay:1500ms">
+          <image href="data:image/svg+xml;base64,CiAgPHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiPgogICAgCiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPgogICAgICAgICAgPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbGw9IiMyNDI5MzgiIHJ4PSI2MCIvPjxwYXRoIGZpbGw9IiNDQ0MiIGQ9Ik0yMTYuMDQyIDE2Ny44MTRWNzQuNzQyNUwxMzUuMzggMjguMjA2OFY2My45ODc2TDE2Ny4wMjUgODIuMTg4MkMxNjguMjY2IDgyLjgwODYgMTY4LjI2NiA4NC42NzAxIDE2Ny4wMjUgODUuMjkwNUwxMjkuMzgyIDEwNy4wMDdDMTI4LjM0OCAxMDcuNjI4IDEyNi45MDEgMTA3LjYyOCAxMjUuODY2IDEwNy4wMDdMODguMjI0MyA4NS4wODM3Qzg2Ljk4MzQgODQuNDYzMiA4Ni45ODM0IDgyLjYwMTggODguMjI0MyA4MS45ODEzTDExOS44NjkgNjMuNzgwN1YyOEwzOS4yMDY4IDc0LjUzNTZWMTY3LjgxNFYxNjcuNFYxNjcuODE0TDcwLjIzMDUgMTUwLjAyN1YxMTMuNDE5QzcwLjIzMDUgMTEyLjE3OCA3MS42NzgzIDExMS4xNDQgNzIuOTE5MyAxMTEuOTcxTDExMC41NjEgMTMzLjY4OEMxMTEuNTk2IDEzNC4zMDggMTEyLjQyMyAxMzUuNTQ5IDExMi40MjMgMTM2Ljc5VjE4MC4yMjNDMTEyLjQyMyAxODEuNDY0IDExMC45NzUgMTgyLjQ5OCAxMDkuNzM0IDE4MS42NzFMNzguMDg5OSAxNjMuNDdMNDcuMDY2MSAxODEuMjU3TDEyNy43MjggMjI3Ljc5M0wyMDguMzkgMTgxLjI1N0wxNzcuMzY2IDE2My40N0wxNDUuNzIyIDE4MS42NzFDMTQ0LjY4OCAxODIuMjkxIDE0My4wMzMgMTgxLjQ2NCAxNDMuMDMzIDE4MC4yMjNWMTM2Ljc5QzE0My4wMzMgMTM1LjU0OSAxNDMuNjUzIDEzNC4zMDggMTQ0Ljg5NCAxMzMuNjg4TDE4Mi41MzcgMTExLjk3MUMxODMuNTcxIDExMS4zNSAxODUuMjI1IDExMi4xNzggMTg1LjIyNSAxMTMuNDE5VjE1MC4wMjdMMjE2LjA0MiAxNjcuODE0WiIvPjxwYXRoIGZpbGw9IiNBNkE2QTYiIGQ9Ik0xMjcuNTIxIDIyOEwyMDguMTgzIDE4MS40NjRMMTc3LjE1OSAxNjMuNjc3TDE0NS41MTUgMTgxLjg3OEMxNDQuNDgxIDE4Mi40OTkgMTQyLjgyNiAxODEuNjcxIDE0Mi44MjYgMTgwLjQzVjEzNi45OTdDMTQyLjgyNiAxMzUuNzU2IDE0My40NDcgMTM0LjUxNSAxNDQuNjg4IDEzMy44OTVMMTgyLjMzIDExMi4xNzhDMTgzLjM2NCAxMTEuNTU4IDE4NS4wMTkgMTEyLjM4NSAxODUuMDE5IDExMy42MjZWMTUwLjIzNEwyMTYuMDQyIDE2OC4wMjFWNzQuNzQyN0wxMjcuNTIxIDEyNS44MjhWMjI4WiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xMzUuMTc0IDI4VjYzLjc4MDdMMTY2LjgxOCA4MS45ODEzQzE2OC4wNTkgODIuNjAxOCAxNjguMDU5IDg0LjQ2MzIgMTY2LjgxOCA4NS4wODM3TDEyOS4xNzYgMTA2LjhDMTI4LjE0MiAxMDcuNDIxIDEyNi42OTQgMTA3LjQyMSAxMjUuNjYgMTA2LjhMODguMjI0MyA4NS4wODM3Qzg2Ljk4MzQgODQuNDYzMiA4Ni45ODM0IDgyLjYwMTggODguMjI0MyA4MS45ODEzTDExOS44NjkgNjMuNzgwN1YyOEwzOS4yMDY4IDc0LjUzNTZMMTI3LjcyOCAxMjUuNjIxTDIxNi4yNDkgNzQuNTM1NkwxMzUuMTc0IDI4WiIvPjxwYXRoIGZpbGw9IiNDQ0MiIGQ9Ik0xMDkuMzIgMTgxLjY3MUw3Ny42NzYzIDE2My40NzFMNDYuNjUyNSAxODEuMjU4TDEyNy4zMTQgMjI3Ljc5M1YxMjUuNjIyTDM5IDc0Ljc0MjdWMTY4LjAyMVYxNjcuNjA3VjE2OC4wMjFMNzAuMDIzNyAxNTAuMjM0VjExMy42MjZDNzAuMDIzNyAxMTIuMzg1IDcxLjQ3MTUgMTExLjM1MSA3Mi43MTI1IDExMi4xNzhMMTEwLjM1NSAxMzMuODk1QzExMS4zODkgMTM0LjUxNSAxMTIuMjE2IDEzNS43NTYgMTEyLjIxNiAxMzYuOTk3VjE4MC40M0MxMTIuMDA5IDE4MS40NjQgMTEwLjU2MSAxODIuMjkyIDEwOS4zMiAxODEuNjcxWiIvPjwvc3ZnPgogICAgICAgIDwvZz4KICAgICAgICAKICA8L3N2Zz4KICA=" x="36" y="332" width="36" height="36"/>
+          <text class="chip" x="54" y="384">Unity</text></g>
+        <g class="pop" style="animation-delay:1610ms">
+          <image href="data:image/svg+xml;base64,CiAgPHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiPgogICAgCiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPgogICAgICAgICAgPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiI+PHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbGw9IiM5NTNDQUQiIHJ4PSI2MCIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xOTUuNDM2IDEwMC42NjhWMTE0LjE0MkgyMDguOTFWMTAwLjY2OEgyMTUuNjQ3VjExNC4xNDJIMjI5LjEyVjEyMC44NzlIMjE1LjY0N1YxMzQuMzUySDIyOS4xMlYxNDEuMDg5SDIxNS42NDdWMTU0LjU2M0gyMDguOTFWMTQxLjA4OUgxOTUuNDM2VjE1NC41NjNIMTg4LjY5OVYxNDEuMDg5SDE3NS4yMjZWMTM0LjM1MkgxODguNjk5VjEyMC44NzlIMTc1LjIyNlYxMTQuMTQySDE4OC42OTlWMTAwLjY2OEgxOTUuNDM2Wk0yMDguOTEgMTIwLjg3OUgxOTUuNDM2VjEzNC4zNTJIMjA4LjkxVjEyMC44NzlaIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTEyMi4wMDEgMzNDMTU3LjE0NCAzMyAxODcuODI4IDUyLjA4NjMgMjA0LjI2MiA4MC40NTYxTDIwNC4xMDIgODAuMTgzTDE2Mi43NTMgMTAzLjk5MUMxNTQuNjA3IDkwLjE5NzcgMTM5LjY3MiA4MC44ODkyIDEyMi41NCA4MC42OTc1TDEyMi4wMDEgODAuNjk0NUM5NS44NzUgODAuNjk0NSA3NC42OTQ1IDEwMS44NzQgNzQuNjk0NSAxMjcuOTk5Qzc0LjY5NDUgMTM2LjU0MyA3Ni45NzIzIDE0NC41NTIgODAuOTMzNSAxNTEuNDY5Qzg5LjA4NzYgMTY1LjcwNCAxMDQuNDE2IDE3NS4zMDYgMTIyLjAwMSAxNzUuMzA2QzEzOS42OTMgMTc1LjMwNiAxNTUuMTA5IDE2NS41ODIgMTYzLjIyMiAxNTEuMTk1TDE2My4wMjUgMTUxLjU0TDIwNC4zMTEgMTc1LjQ1OEMxODguMDU3IDIwMy41ODggMTU3Ljc5NCAyMjIuNjE1IDEyMy4wNTkgMjIyLjk5NEwxMjIuMDAxIDIyM0M4Ni43NDYgMjIzIDU1Ljk3NTMgMjAzLjc5NiAzOS41ODIgMTc1LjI3NkMzMS41NzkxIDE2MS4zNTMgMjcgMTQ1LjIxMiAyNyAxMjcuOTk5QzI3IDc1LjUzMzQgNjkuNTMyMyAzMyAxMjIuMDAxIDMzWiIvPjwvc3ZnPgogICAgICAgIDwvZz4KICAgICAgICAKICA8L3N2Zz4KICA=" x="104" y="332" width="36" height="36"/>
+          <text class="chip" x="122" y="384">C#</text></g>
+        <g class="pop" style="animation-delay:1720ms">
+          <image href="data:image/svg+xml;base64,CiAgPHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiPgogICAgCiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPgogICAgICAgICAgPHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2IiByeD0iNjAiIGZpbGw9IiMyNDI5MzgiLz4KPHBhdGggZD0iTTEwNy4wMjggNDguODE4MUg2MC43ODg4QzUxLjU3OTggNDguODE4MSA0NC4wMTA4IDU2LjY4MDEgNDQuMDEwOCA2Ni40MTUxQzQzLjY4MTggNzUuODExMSA1MC45MTc4IDgzLjY3MDEgNTkuOTY5OCA4NC4wMTExSDEwNy41MjJMMTA3LjAyOCA0OC44MTgxWiIgZmlsbD0iIzA3MzA0MiIvPgo8cGF0aCBkPSJNMjExLjgzNSAyMDUuMzAzSDYwLjc4ODdDNTEuNDE0NyAyMDUuMzAzIDQ0LjAxMDcgMTk3LjQ0NSA0NC4wMTA3IDE4Ny43MDdWNjYuMjQ2MUM0NC4wMTA3IDc1Ljk4MjEgNTEuNTc5NyA4My44NDExIDYwLjc4ODcgODQuMDExMUgxODcuMzIxQzE4Ny4zMjEgODQuMDExMSAyMTIgODEuNzkzMSAyMTIgMTAxLjA5N1YyMDUuMzAzSDIxMS44MzVaIiBmaWxsPSIjNDI4NUY0Ii8+CjxwYXRoIGQ9Ik0xNDEuNDEzIDE0My4xMkMxNDguMTU5IDEzNy44MjUgMTQ5LjQ3NSAxMjcuOTE3IDE0NC4zNzkgMTIxLjA4MkMxNDEuNTc5IDExNy4zMjQgMTM3LjMwMSAxMTQuOTMzIDEzMi42OTIgMTE0Ljc2MUgxMzMuMTg2QzEzNC4wMTEgMTE0LjU5MSAxMzQuOTk3IDExNC41OTEgMTM1LjgyMyAxMTQuNzYxVjEwNS4wMjRDMTM1LjgyMyAxMDMuODI4IDEzNS4zMjcgMTAyLjgwMyAxMzQuMzQgMTAyLjI5MkMxMzIuODU4IDEwMS40MzcgMTMxLjA0OSAxMDEuOTUgMTMwLjIyNyAxMDMuNDg3QzEyOS44OTcgMTA0IDEyOS43MzMgMTA0LjUxMiAxMjkuODk3IDEwNS4xOTVWMTE1LjEwMkMxMjEuNjcxIDExNi40NjkgMTE1LjkxMiAxMjQuNDk5IDExNy4yMjUgMTMzLjIxM1YxMzMuMzgzQzExNy44ODYgMTM3LjQ4MyAxMjAuMDI3IDE0MS4yNDIgMTIzLjMxNiAxNDMuNjMzTDk1LjUwODggMjA1LjQ3NEgxMTMuNjA5TDEyNi40NDEgMTc3LjExNkMxMjcuOTI1IDE3My42OTggMTMxLjg3MiAxNzIuMTYyIDEzNS4zMjcgMTczLjg3QzEzNi42NDYgMTc0LjU1NCAxMzcuNzk1IDE3NS43NDkgMTM4LjQ1MyAxNzcuMTE2TDE1MS43ODMgMjA1LjQ3NEgxNzAuMjA5TDE0MS40MTMgMTQzLjEyWk0xMzIuMDM2IDE0MC4zODdDMTI2Ljc3IDE0MC4zODcgMTIyLjY1NyAxMzUuOTQ1IDEyMi42NTcgMTMwLjQ4QzEyMi42NTcgMTI1LjAxMSAxMjYuOTM1IDEyMC43NDEgMTMyLjE5OSAxMjAuOTExQzEzNC42NjcgMTIwLjkxMSAxMzYuODEgMTIxLjkzNyAxMzguNjE3IDEyMy42NDdDMTQyLjQwMSAxMjcuNDAzIDE0Mi40MDEgMTMzLjU1NCAxMzguNzgxIDEzNy40ODNDMTM3LjEzNyAxMzkuMTkyIDEzNC42NjcgMTQwLjM4NyAxMzIuMDM2IDE0MC4zODdaIiBmaWxsPSIjMzg3MEIyIi8+CjxwYXRoIGQ9Ik05Ni45OTE3IDU3LjM2M0gxNjEuODE4VjY5LjY2Mkg5Ni45OTE3VjU3LjM2M1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xMjcuMSAxMjAuNzQxQzEzMi4xOTkgMTIwLjc0MSAxMzYuNDggMTI1LjE4MyAxMzYuMzE2IDEzMC42NDlDMTM2LjMxNiAxMzUuOTQ1IDEzMi4wMzYgMTQwLjM4NyAxMjYuNzcgMTQwLjIxNkMxMjEuNjcxIDE0MC4yMTYgMTE3LjU1NiAxMzUuNzc1IDExNy41NTYgMTMwLjQ4QzExNy41NTYgMTI3LjkxNyAxMTguNTQyIDEyNS41MjQgMTIwLjM1NyAxMjMuNjQ3QzEyMi4xNjQgMTIxLjc2NiAxMjQuNjMgMTIwLjc0MSAxMjcuMSAxMjAuNzQxWk0xMzAuNzIgMTE1LjEwMlYxMDQuODUzQzEzMC43MiAxMDMuNjU3IDEzMC4yMjcgMTAyLjYzMyAxMjkuMjQgMTAyLjExOUMxMjcuNzYgMTAxLjI2NSAxMjUuOTQ5IDEwMS43NzggMTI1LjEyMyAxMDMuMzE2QzEyNC43OTMgMTAzLjgyOCAxMjQuNjMgMTA0LjM0MSAxMjQuNzkzIDEwNS4wMjRWMTE0LjkzM0MxMTYuNTY3IDExNi4yOTggMTEwLjgwOCAxMjQuMzMgMTEyLjEyOSAxMzMuMDQyVjEzMy4yMTNDMTEyLjc4OCAxMzcuMzEgMTE0LjkyNCAxNDEuMDcgMTE4LjIxNSAxNDMuNDZMODMuMTY4OCAyMjEuNTMyQzgxLjg1MzggMjI0LjI2OCA4Mi4wMTc4IDIyNy42ODIgODMuODI3OCAyMzAuMjQ1Qzg2LjQ1NjggMjM0LjE3MyA5MS41NjE4IDIzNS4xOTggOTUuMzQxOCAyMzIuNDY2Qzk2LjY2MjggMjMxLjYxMSA5Ny42NDg4IDIzMC4yNDUgOTguMzA1OCAyMjguODc4TDEyMS42NzEgMTc2Ljk0NEMxMjMuMTUxIDE3My41MjggMTI3LjEgMTcxLjk5IDEzMC41NTYgMTczLjY5OEMxMzEuODcyIDE3NC4zODIgMTMzLjAyMiAxNzUuNTc5IDEzMy42ODEgMTc2Ljk0NEwxNTcuNTM5IDIyOC4zNjZDMTU5LjUxNiAyMzIuNjM2IDE2NC40NDkgMjM0LjM0NCAxNjguNTY2IDIzMi4yOTNDMTcyLjY3NiAyMzAuMjQ1IDE3NC4zMjMgMjI1LjExOSAxNzIuMzQ3IDIyMC44NDhMMTM2LjMxNiAxNDMuMTJDMTQyLjg5NiAxMzcuNjUyIDE0NC4wNDkgMTI3LjU3NSAxMzguNzgxIDEyMC43NDFDMTM2LjgxIDExOC4wMDcgMTM0LjAxMSAxMTYuMTI4IDEzMC43MiAxMTUuMTAyWiIgZmlsbD0iIzA3MzA0MiIvPgo8cGF0aCBkPSJNMTUyLjI3NiA2OC4yOTZDMTQ5LjgwNSA2OC4yOTYgMTQ3LjgzMSA2Ni40MTUgMTQ3LjgzMSA2My44NTRDMTQ3LjgzMSA2Mi42NTggMTQ4LjMyMyA2MS4yOTIgMTQ5LjE0NiA2MC40MzdDMTUwLjk1NyA1OC43MyAxNTMuNTkxIDU4LjczIDE1NS40MDEgNjAuNDM3QzE1Ni4yMjIgNjEuMjkyIDE1Ni43MTYgNjIuNDg3IDE1Ni43MTYgNjMuNjgzQzE1Ni41NTIgNjYuMjQ2IDE1NC43NDIgNjguMTI1IDE1Mi4yNzYgNjguMjk2Wk0xMDMuNTcyIDY4LjEyNUMxMDEuMSA2OC4xMjUgOTkuMTI4OCA2Ni4wNzUgOTkuMTI4OCA2My42ODNDOTkuMTI4OCA2Mi40ODcgOTkuNjIzOCA2MS4yOTIgMTAwLjQ0MyA2MC40MzdDMTAxLjkyNSA1OC41NTkgMTA0LjcyNiA1OC4yMTYgMTA2LjUzMyA1OS43NTZIMTA2LjY5OEMxMDguNTA2IDYxLjQ2MyAxMDguNjcgNjQuMzY2IDEwNy4wMjggNjYuMjQ2TDEwNi41MzMgNjYuOTI3QzEwNS43MTIgNjcuNzgyIDEwNC41NjIgNjguMjk2IDEwMy40MDYgNjguMjk2TDEwMy41NzIgNjguMTI1Wk0xNTMuNTkxIDQwLjYyTDE2Mi4zMTEgMjQuOTA0QzE2Mi44MDQgMjQuMDUgMTYyLjQ3NSAyMy4wMjUgMTYxLjgxOCAyMi4zNDJDMTYwLjk5NSAyMiAxNjAuMTc0IDIyLjE3MSAxNTkuNjgxIDIyLjg1NUwxNTAuNjI5IDM5LjA4M0MxMzYuMTUxIDMyLjQyMSAxMTkuNjk4IDMyLjQyMSAxMDUuMzgzIDM5LjA4M0w5Ni40OTc4IDIzLjAyNUM5Ni4xNjg4IDIyLjUxMyA5NS41MDg4IDIyIDk0Ljg0ODggMjJDOTQuMTkxOCAyMiA5My41MzI4IDIyLjM0MiA5My4yMDE4IDIzLjAyNUM5Mi44NzM4IDIzLjUzOCA5Mi44NzM4IDI0LjM5MSA5My4yMDE4IDI0LjkwNEwxMDIuMDkgNDAuNjJDODYuNjIwOCA0OS4zMyA3Ni41ODQ4IDY1LjczNCA3NS4xMDc4IDgzLjg0MUgxODAuNzM3QzE3OS40MjQgNjUuNTY0IDE2OS4yMjEgNDkuMzMgMTUzLjc1NSA0MC42MiIgZmlsbD0iIzNEREM4NCIvPgo8cGF0aCBkPSJNMTk3LjM3IDExNy44MzlIMTkwLjQ1OUMxOTAuMTI4IDExOC4wMDcgMTg5LjggMTE4LjM0OSAxODkuOCAxMTguODYxVjIzMi40NjZDMTg5LjggMjMyLjk3NyAxOTAuMTI4IDIzMy4zMTkgMTkwLjYyNSAyMzMuMzE5SDE5Ny44NjNDMjA2LjI1NCAyMzMuMzE5IDIxMyAyMjYuMTQzIDIxMyAyMTcuNjAzVjEwMS45NUMyMTMgMTEwLjY2MiAyMDYuMjU0IDExNy42NjcgMTk3Ljg2MyAxMTcuNjY3SDE5Ny4zN1YxMTcuODM5WiIgZmlsbD0iIzA3MzA0MiIvPgo8L3N2Zz4KCiAgICAgICAgPC9nPgogICAgICAgIAogIDwvc3ZnPgogIA==" x="172" y="332" width="36" height="36"/>
+          <text class="chip" x="190" y="384">Android</text></g>
+        <g class="pop" style="animation-delay:1830ms">
+          <image href="data:image/svg+xml;base64,CiAgPHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiPgogICAgCiAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCwgMCkiPgogICAgICAgICAgPHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8zM183NDApIj4KPHBhdGggZD0iTTE5NiAwSDYwQzI2Ljg2MjkgMCAwIDI2Ljg2MjkgMCA2MFYxOTZDMCAyMjkuMTM3IDI2Ljg2MjkgMjU2IDYwIDI1NkgxOTZDMjI5LjEzNyAyNTYgMjU2IDIyOS4xMzcgMjU2IDE5NlY2MEMyNTYgMjYuODYyOSAyMjkuMTM3IDAgMTk2IDBaIiBmaWxsPSIjMjQyOTM4Ii8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkxLjA3MiAxOTUuMDA5QzE4Ny44MDIgMjAwLjM5NiAxODQuNTMyIDIwNC40MzUgMTgwLjU4OCAyMDguMTg1QzE3Ni4xNjQgMjEyLjEyOSAxNzQuOTE0IDIxNS41OTEgMTY0LjcxOCAyMTYuOTM5QzE1Ny41MDUgMjE4LjI4NiAxNTEuMjUzIDIxNS41OTEgMTQ4Ljg0OCAyMTQuNTM0QzE0MS42MzQgMjExLjE2NyAxMzcuODgyIDIxMC4xMSAxMzMuNTU1IDIxMC4xMUMxMjkuMzIzIDIxMC4xMSAxMjUuNzY0IDIxMS4xNjggMTE4LjY0NiAyMTQuNDM4QzExNi40MzQgMjE1LjU5MSAxMTAuNDcxIDIxOC4xODkgMTAzLjE2MSAyMTYuODQzQzk1LjY1ODcgMjE1LjQ5NiA5MS44MTEzIDIxMi42MTEgODkuMDIyIDIxMC4yMDZDODMuMjUxIDIwNS4xMDkgNzguOTIyOCAyMDAuMjk5IDc0Ljk3OTIgMTk0LjcyMUwxOTEuMDcyIDE5NS4wMDlaIiBmaWxsPSIjMDBBMEUyIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNNTguNzI1NSAxMDUuMjdDNjIuMDkxOSA5Ny42NzE5IDY2LjUxNjMgOTIuNTc0MSA3MC45NDA3IDg5LjAxNTRDODIuMTk0MiA3OS43ODE4IDEwMC41NjUgNzkuMjA0NyAxMDkuMDI5IDgxLjQxNjlDMTE1Ljk1NSA4My4xNDgyIDEyMC44NiA4Ny4zODAyIDEyOC42NTEgODcuMzgwMkMxMzYuODI2IDg3LjM4MDIgMTQxLjUzOCA4My4yNDQ0IDE0Ny45ODQgODEuNDE2OUMxNTYuNDQ4IDc5LjMwMDkgMTc0LjkxNSA3OS45NzQxIDE4Ni45MzggODkuMjA3N0MxOTAuNDk3IDkxLjkwMDkgMTkzLjc2NSA5NS41NTU4IDE5NS41OTMgOTcuNTc1N0MxOTEuMjY2IDEwMC43NSAxODguNjY4IDEwMy4wNTggMTg2LjU1MiAxMDUuMjdINTguNzI1NVoiIGZpbGw9IiMzNEJFMkQiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xODYuNTUzIDEwNS4yN0MxODQuNTMzIDEwNy40ODIgMTgzLjA5MSAxMDkuNTk5IDE4MS40NTUgMTEyLjU4QzE3OS41MzMgMTE2LjA0MyAxNzcuMjIzIDEyMC43NTYgMTc2LjY0NiAxMjcuODczSDUzLjA1MDhDNTMuMTQ3IDEyNi43MTkgNTMuMjQzMSAxMjUuNDY5IDUzLjQzNTUgMTI0LjIxOEM1NC41ODk3IDExNi42MiA1Ni40MTcyIDExMC4zNjggNTguNzI1NiAxMDUuMjdIMTg2LjU1M1oiIGZpbGw9IiNGRkI0MDAiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNzYuNjQ2IDEyNy44NzNDMTc2LjU1IDEzMC4wNTIgMTc2LjU1IDEzMi4yMzUgMTc2LjY0NiAxMzQuNDE0QzE3Ni45MzUgMTM5LjcwNCAxNzguNzYyIDE0NS41NzEgMTgxLjE2NyAxNTAuMjg0TDU1LjQ1NTMgMTQ5Ljk5NUM1My43MjQgMTQyLjM5NyA1Mi43NjIyIDEzNC42MDYgNTMuMDUwNyAxMjcuODczSDE3Ni42NDZaIiBmaWxsPSIjRkY3QTAwIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTgxLjE2NiAxNTAuMjg0QzE4Mi4xNSAxNTIuMzI1IDE4My4zNDIgMTU0LjI1OSAxODQuNzI0IDE1Ni4wNTVDMTkyLjk5NiAxNjYuNjM1IDE5Ni41NTUgMTY2LjYzNSAyMDIuOTk5IDE2OS45MDZDMjAyLjUyIDE3MS4wNTggMjAyLjEzNSAxNzIuMTE4IDIwMS42NTMgMTczLjA4TDYyLjc2NTMgMTcyLjc5MUM2MC4wNzIxIDE2Ni45MjQgNTcuMjgyOCAxNTguNjUyIDU1LjQ1NTMgMTQ5Ljk5NkwxODEuMTY2IDE1MC4yODRaIiBmaWxsPSIjRjQxRTM0Ii8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMjAxLjY1MyAxNzMuMDhDMTk3LjYxNCAxODIuNTA2IDE5NC4zNDMgMTg5LjQyOSAxOTEuMDcyIDE5NS4wMDlMNzQuOTgwNSAxOTQuNzIxQzcxLjEzMzIgMTg5LjA0NiA2Ny42NzA2IDE4Mi43OTMgNjMuNzI3MSAxNzUuMDAyQzYzLjQzODUgMTc0LjMyOSA2My4wNTM4IDE3My41NTkgNjIuNzY1MyAxNzIuNzkxTDIwMS42NTMgMTczLjA4WiIgZmlsbD0iI0EyMzU5QyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE2MS4zNTIgNTIuNjU4QzE2MC42NzkgNTcuNDY3MiAxNTguMjc0IDYzLjYyMjkgMTU0LjQyNyA2Ny41NjY0QzE1MC4yODkgNzEuOTkwOSAxNDMuODQ2IDc2LjggMTM5Ljk5OCA3OS4yMDQ2QzEzNy44ODIgODAuNTUxMiAxMzIuMzk5IDgwLjc0MzUgMTI3Ljg4IDgxLjIyNDVDMTI3LjMwMyA3Ny4xODQ4IDEyNy4yMDcgNzMuNzIyMiAxMjguNDU3IDY5Ljk3MUMxMzAuMDkyIDY1LjU0NjYgMTMyLjIxIDU5LjE5ODUgMTM1LjU3NSA1NC43NzQxQzEzOS43MTEgNDkuMjkxNiAxNDQuNDI0IDQ1LjU0MDUgMTQ3LjAyMSA0NC4xOTM5QzE1MC40ODQgNDIuNDYyNiAxNTYuMjU1IDM5Ljg2NTYgMTYxLjI1NiAzOUMxNjEuNDQ5IDQzLjQyNDQgMTYyLjEyMyA0OC40MjYgMTYxLjM1MiA1Mi42NThaIiBmaWxsPSIjMzRCRTJEIi8+CjwvZz4KPGRlZnM+CjxjbGlwUGF0aCBpZD0iY2xpcDBfMzNfNzQwIj4KPHJlY3Qgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+CgogICAgICAgIDwvZz4KICAgICAgICAKICA8L3N2Zz4KICA=" x="240" y="332" width="36" height="36"/>
+          <text class="chip" x="258" y="384">iOS</text></g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+name: Refresh streak card
+
+on:
+  schedule:
+    - cron: "15 0 * * *" # daily, 00:15 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build streak.svg
+        env:
+          # Set a STREAK_TOKEN secret (classic PAT, read:user) if the built-in token cannot read the contribution calendar.
+          GITHUB_TOKEN: ${{ secrets.STREAK_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_LOGIN: ${{ github.repository_owner }}
+        run: node assets/build-streak.js
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- assets/streak.svg; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/streak.svg
+          git commit -m "chore: refresh streak card"
+          git push
