@@ -1,4 +1,4 @@
-// Builds assets/banner.svg: the profile header in a Matrix style. Code rain falls
+// Builds assets/banner.svg: the profile header in a Matrix style, in the profile's blue and purple. Code rain falls
 // behind the name, each letter scrambles through random glyphs before it lands,
 // the name glitches now and then, and the title types out under it.
 // Run `node assets/build-banner.js`. Rain and glyphs come from a seeded PRNG, so
@@ -26,18 +26,20 @@ const glyph = () => {
 
 // Code rain: columns of glyphs, brightest at the falling head, each column on its own speed.
 const COL_W = 16, ROWS = 16, ROW_H = 15, FALL = ROWS * ROW_H;
+const RAIN_COLORS = ["#38bdf8", "#60a5fa", "#818cf8", "#a78bfa", "#c084fc"];
 const rain = [];
 for (let c = 0; c * COL_W < W; c++) {
   const x = c * COL_W + 8;
   const dur = (3.2 + rand() * 4.5).toFixed(2);
   const delay = (-rand() * Number(dur)).toFixed(2);
+  const color = RAIN_COLORS[Math.floor(rand() * RAIN_COLORS.length)];
   const spans = [];
   for (let r = 0; r < ROWS; r++) {
     const head = r === ROWS - 1;
     const op = head ? 1 : (0.08 + 0.75 * (r / (ROWS - 1)) ** 1.6).toFixed(2);
     spans.push(`<tspan x="${x}" y="${r * ROW_H}"${head ? ' class="head"' : ""} fill-opacity="${op}">${glyph()}</tspan>`);
   }
-  rain.push(`<text class="rain" style="animation-duration:${dur}s; animation-delay:${delay}s">${spans.join("")}</text>`);
+  rain.push(`<text class="rain" fill="${color}" style="animation-duration:${dur}s; animation-delay:${delay}s">${spans.join("")}</text>`);
 }
 
 // Name: each letter cycles random glyphs, then holds its real character.
@@ -62,12 +64,12 @@ const typeAt = nameDone + 200, typeMs = TITLE.length * 55;
 
 const css = `
   text { font-family: Consolas, 'Courier New', 'MS Gothic', monospace; text-anchor: middle; }
-  .rain { font-size: 14px; fill: #00ff41; animation-name: fall; animation-timing-function: linear; animation-iteration-count: infinite; }
-  .head { fill: #d8ffe0; }
-  .nm { font-size: ${FONT}px; font-weight: 700; fill: #c8ffd2; }
-  .frame { opacity: 0; fill: #3dff7a; }
+  .rain { font-size: 14px; animation-name: fall; animation-timing-function: linear; animation-iteration-count: infinite; }
+  .head { fill: #eef2ff; }
+  .nm { font-size: ${FONT}px; font-weight: 700; fill: url(#nameGrad); }
+  .frame { opacity: 0; fill: #a5b4fc; }
   .ghost { font-size: ${FONT}px; font-weight: 700; opacity: 0; animation: glitch 6.5s steps(1) ${nameDone + 1500}ms infinite; }
-  .title { font-size: ${T_FONT}px; font-weight: 700; fill: #4ade80; text-anchor: start; letter-spacing: 0; }
+  .title { font-size: ${T_FONT}px; font-weight: 700; fill: #7dd3fc; text-anchor: start; letter-spacing: 0; }
   .type { transform-box: fill-box; transform-origin: left; animation: type ${typeMs}ms steps(${TITLE.length}) ${typeAt}ms backwards; }
   .caret { animation: hold 1ms linear var(--at) 1 backwards, blink 1s steps(1) var(--at) infinite; }
   .scan { animation: scan 7s linear infinite; }
@@ -93,12 +95,18 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
   <defs>
     <clipPath id="frame"><rect width="${W}" height="${H}" rx="16"/></clipPath>
     <radialGradient id="focus" cx=".5" cy=".55" r=".55">
-      <stop offset="0" stop-color="#010805" stop-opacity=".92"/>
-      <stop offset=".55" stop-color="#010805" stop-opacity=".55"/>
-      <stop offset="1" stop-color="#010805" stop-opacity="0"/>
+      <stop offset="0" stop-color="#020617" stop-opacity=".92"/>
+      <stop offset=".55" stop-color="#020617" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="nameGrad" gradientUnits="userSpaceOnUse" x1="${startX - 24}" y1="0" x2="${startX + (NAME.length - 1) * ADV + 24}" y2="0">
+      <stop offset="0" stop-color="#bae6fd"/><stop offset=".5" stop-color="#c7d2fe"/><stop offset="1" stop-color="#e9d5ff"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
     <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#00ff41" stop-opacity="0"/><stop offset=".5" stop-color="#00ff41" stop-opacity=".08"/><stop offset="1" stop-color="#00ff41" stop-opacity="0"/>
+      <stop offset="0" stop-color="#818cf8" stop-opacity="0"/><stop offset=".5" stop-color="#818cf8" stop-opacity=".09"/><stop offset="1" stop-color="#818cf8" stop-opacity="0"/>
     </linearGradient>
     <pattern id="lines" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1" fill="#000" fill-opacity=".35"/></pattern>
     <filter id="glow" x="-20%" y="-50%" width="140%" height="200%">
@@ -108,19 +116,19 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" 
     <clipPath id="typed"><rect class="type" x="${tX}" y="${T_Y - T_FONT}" width="${tWidth}" height="${T_FONT + 6}"/></clipPath>
   </defs>
   <g clip-path="url(#frame)">
-    <rect width="${W}" height="${H}" fill="#020c06"/>
+    <rect width="${W}" height="${H}" fill="#050920"/>
     <g>${rain.join("\n    ")}</g>
     <rect width="${W}" height="${H}" fill="url(#focus)"/>
     <rect class="scan" x="0" y="0" width="${W}" height="40" fill="url(#beam)"/>
     <g filter="url(#glow)">
       ${letters.join("\n      ")}
     </g>
-    <g class="ghost" fill="#00ff41">${finals.join("")}</g>
-    <g class="ghost" fill="#9dffb7" style="animation-delay:${nameDone + 1560}ms">${finals.join("")}</g>
+    <g class="ghost" fill="#38bdf8">${finals.join("")}</g>
+    <g class="ghost" fill="#a78bfa" style="animation-delay:${nameDone + 1560}ms">${finals.join("")}</g>
     <text class="title" x="${tX}" y="${T_Y}" clip-path="url(#typed)">${TITLE.replace(">", "&gt;")}</text>
-    <rect class="caret" x="${tX + tWidth + 3}" y="${T_Y - T_FONT + 3}" width="9" height="${T_FONT}" fill="#4ade80" style="--at:${typeAt + typeMs}ms"/>
+    <rect class="caret" x="${tX + tWidth + 3}" y="${T_Y - T_FONT + 3}" width="9" height="${T_FONT}" fill="#a78bfa" style="--at:${typeAt + typeMs}ms"/>
     <rect width="${W}" height="${H}" fill="url(#lines)"/>
-    <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="#00ff41" stroke-opacity=".35" stroke-width="1.5"/>
+    <rect x=".75" y=".75" width="${W - 1.5}" height="${H - 1.5}" rx="15.5" fill="none" stroke="url(#edge)" stroke-opacity=".5" stroke-width="1.5"/>
   </g>
 </svg>
 `;
