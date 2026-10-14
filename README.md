@@ -1,6 +1,6 @@
 <!-- Header -->
 <p align="center">
-  <img src="assets/banner.svg" width="100%" alt="Saad Sohail, Software Engineer" />
+  <img src="assets/banner.svg?v=2" width="100%" alt="Saad Sohail, Software Engineer" />
 </p>
 
 <p align="center">
