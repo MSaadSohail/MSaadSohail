@@ -9,8 +9,8 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Algoryte-Software%20Engineer-0ea5e9?style=for-the-badge&labelColor=0f172a" alt="Algoryte" />
-  <img src="https://img.shields.io/badge/Based%20in-Islamabad%2C%20PK-1e3a8a?style=for-the-badge&labelColor=0f172a" alt="Islamabad" />
-  <img src="https://img.shields.io/badge/On%20GitHub%20since-2021-334155?style=for-the-badge&labelColor=0f172a" alt="Since 2021" />
+  <img src="https://img.shields.io/badge/Game%20Developer-1e3a8a?style=for-the-badge" alt="Game Developer" />
+  <img src="https://img.shields.io/badge/System%20Design-334155?style=for-the-badge" alt="System Design" />
 </p>
 
 ---
