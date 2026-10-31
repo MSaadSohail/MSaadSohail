@@ -66,7 +66,7 @@
       <text class="num hnum final" x="20" y="48" style="animation: hold 1ms linear 1700ms 1 backwards">719</text>
       <text class="label" x="20" y="70">CONTRIBUTIONS IN THE LAST YEAR</text>
       <text class="meta" x="830" y="36" text-anchor="end">Best day: <tspan fill="#7dd3fc">47</tspan> on Jul 26, 2026</text>
-      <text class="meta" x="830" y="58" text-anchor="end">Active days: <tspan fill="#7dd3fc">113</tspan> of 370</text>
+      <text class="meta" x="830" y="58" text-anchor="end">Active days: <tspan fill="#7dd3fc">113</tspan> of 371</text>
       <text class="axis" x="699.5" y="232">Less</text><rect x="727.5" y="222.5" width="11.5" height="11.5" rx="2.5" fill="#1a2336"/><rect x="742" y="222.5" width="11.5" height="11.5" rx="2.5" fill="#0c4a6e"/><rect x="756.5" y="222.5" width="11.5" height="11.5" rx="2.5" fill="#0369a1"/><rect x="771" y="222.5" width="11.5" height="11.5" rx="2.5" fill="#0ea5e9"/><rect x="785.5" y="222.5" width="11.5" height="11.5" rx="2.5" fill="#7dd3fc"/>
       <text class="axis" x="802" y="232">More</text>
       <text class="axis" x="54" y="232">Highlighted square: best day</text>
@@ -456,6 +456,7 @@
       <rect class="cell" x="808" y="153.5" width="11.5" height="11.5" rx="2.5" fill="#0c4a6e" style="animation-delay:1774ms"/>
       <rect class="cell" x="808" y="168" width="11.5" height="11.5" rx="2.5" fill="#1a2336" style="animation-delay:1784ms"/>
       <rect class="cell" x="808" y="182.5" width="11.5" height="11.5" rx="2.5" fill="#1a2336" style="animation-delay:1794ms"/>
+      <rect class="cell" x="808" y="197" width="11.5" height="11.5" rx="2.5" fill="#1a2336" style="animation-delay:1804ms"/>
     </g>
   </g>
 </svg>
